@@ -22,7 +22,7 @@
 #include <cuda.h>
 
 
-#include <my_timing.h>
+#include "my_timing.h"
 #ifdef TIMING
 #include "timing.h"
 #endif
