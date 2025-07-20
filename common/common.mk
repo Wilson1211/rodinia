@@ -36,9 +36,9 @@
 .SUFFIXES : .cu .cu_dbg_o .c_dbg_o .cpp_dbg_o .cu_rel_o .c_rel_o .cpp_rel_o .cubin
 
 # Add new SM Versions here as devices with new Compute Capability are released
-SM_VERSIONS := sm_10 sm_11 sm_12 sm_13
+SM_VERSIONS := sm_90
 
-CUDA_INSTALL_PATH ?= /usr/local/cuda
+CUDA_INSTALL_PATH ?= /home1/apps/nvidia/Linux_aarch64/24.9/cuda/12.6
 
 ifdef cuda-install
 	CUDA_INSTALL_PATH := $(cuda-install)
@@ -57,7 +57,7 @@ ROOTDIR    ?= ..
 ROOTBINDIR ?= $(ROOTDIR)/../bin
 BINDIR     ?= $(ROOTBINDIR)/$(OSLOWER)
 ROOTOBJDIR ?= obj
-LIBDIR     := $(ROOTDIR)/../lib
+LIBDIR     := $(ROOTDIR)/../lib64
 COMMONDIR  := $(ROOTDIR)/../common
 
 # Compilers
@@ -70,7 +70,7 @@ LINK       := g++ -fPIC
 INCLUDES  += -I. -I$(CUDA_INSTALL_PATH)/include -I$(COMMONDIR)/inc
 
 # architecture flag for cubin build
-CUBIN_ARCH_FLAG := -m32
+CUBIN_ARCH_FLAG := -m64
 
 # Warning flags
 CXXWARN_FLAGS := \
@@ -122,7 +122,7 @@ endif
 #NVCCFLAGS += $(SMVERSIONFLAGS)
 
 # architecture flag for cubin build
-CUBIN_ARCH_FLAG := -m32
+CUBIN_ARCH_FLAG := -m64
 
 # detect if 32 bit or 64 bit system
 HP_64 =	$(shell uname -m | grep 64)
