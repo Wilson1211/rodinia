@@ -21,9 +21,13 @@
 #include <math.h>
 #include <cuda.h>
 
+
+#include <my_timing.h>
 #ifdef TIMING
 #include "timing.h"
 #endif
+
+
 
 #define MAX_THREADS_PER_BLOCK 512
 
